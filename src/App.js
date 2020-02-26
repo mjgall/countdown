@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import moment from 'moment';
 
-export default App;
+export default class App extends React.Component {
+  state = { daysUntilMarch8th: 11, earlierDate: null };
+
+  componentDidMount = () => {
+    const march9th = moment('2020-03-09');
+    const today = moment();
+    const daysUntil = march9th.diff(today, 'days');
+    const previousDate = moment()
+      .subtract(daysUntil, 'days')
+      .format('dddd, MMMM D');
+
+    this.setState({ daysUntilMarch8th: daysUntil, earlierDate: previousDate });
+  };
+
+  render = () => {
+    return (
+      <div className="app-container">
+        <h1>Countdown to Daylight Savings</h1>
+        <h2>
+          There are { this.state.daysUntilMarch8th } days until March 8th. The date { this.state.daysUntilMarch8th } days ago was { this.state.earlierDate }.
+        </h2>
+      </div>
+    );
+  };
+}
