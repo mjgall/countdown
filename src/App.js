@@ -29,7 +29,8 @@ export default class App extends React.Component {
       <div className="app-container">
         <h1>Countdown to Daylight Savings</h1>
         <h2>
-          There are { this.state.daysUntilMarch8th } days until March 8th. The date { this.state.daysUntilMarch8th } days ago was { this.state.earlierDate }.
+          There are { this.state.daysUntilMarch8th } days until March 8th. <br />
+          The date { this.state.daysUntilMarch8th } days ago was { this.state.earlierDate }.
         </h2>
       </div>
     );
